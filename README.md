@@ -56,3 +56,7 @@ nix-shell
 - The modules are pretty hefty and take a while to compile. I think that's fine for now.
 - I used `-XDuplicateRecordFields` because it was easier to write+read. This is
   fine if, as a consumer of the library, you use `-XNamedFieldPuns` (see the tests for examples).
+- The user currently has to obtain their own `Bearer` token because I'm not
+  sure there's a nice way of handling it from within this library.
+  See the [Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/)
+  for more details.

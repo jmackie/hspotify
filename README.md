@@ -20,6 +20,8 @@ Haskell client library for the [Spotify Web API](https://developer.spotify.com/d
 - [ ] Shows
 - [ ] Users Profile
 
+The modules are also pretty huge at the moment
+
 ## Developing
 
 Common tasks are provided as `make` targets.
@@ -33,9 +35,24 @@ make ghcid-lib # run ghcid
 
 See `make help` for the full list.
 
+Note in order to run the tests you'll need to create an application in your
+[Spotify developer dashboard](https://developer.spotify.com/dashboard) and set
+the client ID and secret in your environment:
+
+```bash
+export HSPOTIFY_TEST_CLIENT_ID=<your-client-id>
+export HSPOTIFY_TEST_CLIENT_SECRET=<your-client-secret>
+```
+
 If you use [Nix](https://nixos.org/nix/) there's also a `shell.nix` that
 provides all the necessary development tools.
 
 ```bash
 nix-shell
 ```
+
+## General noteso
+
+- The modules are pretty hefty and take a while to compile. I think that's fine for now.
+- I used `-XDuplicateRecordFields` because it was easier to write+read. This is
+  fine if, as a consumer of the library, you use `-XNamedFieldPuns` (see the tests for examples).

@@ -1,6 +1,6 @@
 # hspotify
 
-<!-- TODO: build badge -->
+[![Build Status](https://travis-ci.org/jmackie/hspotify.svg?branch=master)](https://travis-ci.org/jmackie/hspotify)
 
 Haskell client library for the [Spotify Web API](https://developer.spotify.com/documentation/web-api/).
 

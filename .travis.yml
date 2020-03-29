@@ -1,0 +1,4 @@
+language: nix
+# https://releases.nixos.org/?prefix=nix/
+nix: 2.3
+script: nix-shell --pure --keep HSPOTIFY_TEST_CLIENT_ID --keep HSPOTIFY_TEST_CLIENT_SECRET --run make

@@ -1,0 +1,8 @@
+/dist-newstyle/
+/docs/
+
+# secret environment variables for testing
+.env
+
+# editor configurations
+.nvimrc

@@ -20,8 +20,6 @@ Haskell client library for the [Spotify Web API](https://developer.spotify.com/d
 - [ ] Shows
 - [ ] Users Profile
 
-The modules are also pretty huge at the moment
-
 ## Developing
 
 Common tasks are provided as `make` targets.

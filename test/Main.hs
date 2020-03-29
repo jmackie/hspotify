@@ -93,7 +93,7 @@ specGetAlbum testEnv =
   describe "getAlbum" $ do
     runTestCases testEnv testCases $ \auth (description, albumID, specs) ->
       ( description,
-        getAlbum auth albumID Nothing,
+        getAlbum auth albumID (Just (CountryFromCountryCode (CountryCode "GB"))),
         specs
       )
   where
@@ -113,7 +113,7 @@ specGetAlbumsTracks testEnv =
   describe "getAlbumsTracks" $ do
     runTestCases testEnv testCases $ \auth (description, albumID, specs) ->
       ( description,
-        getAlbumsTracks auth albumID Nothing Nothing Nothing,
+        getAlbumsTracks auth albumID Nothing Nothing (Just (CountryFromCountryCode "GB")),
         specs
       )
   where
@@ -134,7 +134,7 @@ specGetSeveralAlbums testEnv =
   describe "getSeveralAlbums" $ do
     runTestCases testEnv testCases $ \auth (description, albumIDs, specs) ->
       ( description,
-        getSeveralAlbums auth albumIDs Nothing,
+        getSeveralAlbums auth albumIDs (Just (CountryFromCountryCode "GB")),
         specs
       )
   where
@@ -191,7 +191,7 @@ specGetArtistsAlbums testEnv =
   describe "getArtistsAlbums" $ do
     runTestCases testEnv testCases $ \auth (description, artistID, specs) ->
       ( description,
-        getArtistsAlbums auth artistID Nothing Nothing Nothing Nothing,
+        getArtistsAlbums auth artistID Nothing (Just (CountryFromCountryCode "GB")) Nothing Nothing,
         specs
       )
   where
@@ -210,7 +210,7 @@ specGetArtistsTopTracks testEnv =
   describe "getArtistsTopTracks" $ do
     runTestCases testEnv testCases $ \auth (description, artistID, specs) ->
       ( description,
-        getArtistsTopTracks auth artistID (CountryFromCountryCode (CountryCode "GB")),
+        getArtistsTopTracks auth artistID (CountryFromCountryCode "GB"),
         specs
       )
   where
@@ -288,7 +288,11 @@ specGetCategory testEnv =
   describe "getCategory" $ do
     runTestCases testEnv testCases $ \auth (description, categoryID, specs) ->
       ( description,
-        getCategory auth categoryID Nothing Nothing,
+        getCategory
+          auth
+          categoryID
+          (Just "GB")
+          (Just (Locale "en" "GB")),
         specs
       )
   where
@@ -307,7 +311,7 @@ specGetCategorysPlaylists testEnv =
   describe "getCategorysPlaylists" $ do
     runTestCases testEnv testCases $ \auth (description, categoryID, specs) ->
       ( description,
-        getCategorysPlaylists auth categoryID Nothing Nothing Nothing,
+        getCategorysPlaylists auth categoryID (Just "GB") Nothing Nothing,
         specs
       )
   where
@@ -326,7 +330,7 @@ specGetListCategories testEnv =
   describe "getListCategories" $ do
     runTestCases testEnv testCases $ \auth (description, specs) ->
       ( description,
-        getListCategories auth Nothing Nothing Nothing Nothing,
+        getListCategories auth (Just "GB") (Just (Locale "en" "GB")) Nothing Nothing,
         specs
       )
   where
@@ -344,7 +348,13 @@ specGetListFeaturedPlaylists testEnv =
   describe "getListFeaturedPlaylists" $ do
     runTestCases testEnv testCases $ \auth (description, specs) ->
       ( description,
-        getListFeaturedPlaylists auth Nothing Nothing Nothing Nothing Nothing,
+        getListFeaturedPlaylists
+          auth
+          (Just (Locale "en" "GB"))
+          (Just "GB")
+          (Nothing :: Maybe Timestamp)
+          Nothing
+          Nothing,
         specs
       )
   where
@@ -363,7 +373,7 @@ specGetListNewReleases testEnv =
   describe "getListNewReleases" $ do
     runTestCases testEnv testCases $ \auth (description, specs) ->
       ( description,
-        getListNewReleases auth Nothing Nothing Nothing,
+        getListNewReleases auth (Just "GB") Nothing Nothing,
         specs
       )
   where
@@ -382,7 +392,12 @@ specGetRecommendations testEnv =
   describe "getRecommendations" $ do
     runTestCases testEnv testCases $ \auth (description, attributes, seeds, specs) ->
       ( description,
-        getRecommendations auth Nothing Nothing attributes seeds,
+        getRecommendations
+          auth
+          Nothing
+          (Just (CountryFromCountryCode "GB"))
+          attributes
+          seeds,
         specs
       )
   where
@@ -444,7 +459,12 @@ specSearchAlbum testEnv =
   describe "searchAlbum" $ do
     runTestCases testEnv testCases $ \auth (description, query, specs) ->
       ( description,
-        searchAlbum auth query Nothing Nothing Nothing,
+        searchAlbum
+          auth
+          query
+          (Just (CountryFromCountryCode "GB"))
+          Nothing
+          Nothing,
         specs
       )
   where
@@ -473,7 +493,12 @@ specSearchArtist testEnv =
   describe "searchArtist" $ do
     runTestCases testEnv testCases $ \auth (description, query, specs) ->
       ( description,
-        searchArtist auth query Nothing Nothing Nothing,
+        searchArtist
+          auth
+          query
+          (Just (CountryFromCountryCode "GB"))
+          Nothing
+          Nothing,
         specs
       )
   where
@@ -497,7 +522,12 @@ specSearchPlaylist testEnv =
   describe "searchPlaylist" $ do
     runTestCases testEnv testCases $ \auth (description, query, specs) ->
       ( description,
-        searchPlaylist auth query Nothing Nothing Nothing,
+        searchPlaylist
+          auth
+          query
+          (Just (CountryFromCountryCode "GB"))
+          Nothing
+          Nothing,
         specs
       )
   where
@@ -521,7 +551,12 @@ specSearchTrack testEnv =
   describe "searchTrack" $ do
     runTestCases testEnv testCases $ \auth (description, query, specs) ->
       ( description,
-        searchTrack auth query Nothing Nothing Nothing,
+        searchTrack
+          auth
+          query
+          (Just (CountryFromCountryCode "GB"))
+          Nothing
+          Nothing,
         specs
       )
   where

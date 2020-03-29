@@ -324,7 +324,7 @@ data AlbumFull
   = AlbumFull
       { album_type :: AlbumType,
         artists :: [ArtistSimplified],
-        available_markets :: [CountryCode],
+        available_markets :: Maybe [CountryCode],
         copyrights :: [Copyright],
         external_ids :: ExternalID,
         external_urls :: ExternalURL,
@@ -734,7 +734,7 @@ data TrackFull
 data TrackSimplified
   = TrackSimplified
       { artists :: [ArtistSimplified],
-        available_markets :: [CountryCode],
+        available_markets :: Maybe [CountryCode],
         disc_number :: Int,
         duration_ms :: Int,
         explicit :: Bool,
@@ -834,7 +834,7 @@ data ResumePoint
 -- <https://developer.spotify.com/documentation/web-api/reference/object-model/#show-object-full>
 data ShowFull
   = ShowFull
-      { available_markets :: [CountryCode],
+      { available_markets :: Maybe [CountryCode],
         copyrights :: [Copyright],
         description :: Text,
         explicit :: Bool,
@@ -858,7 +858,7 @@ data ShowFull
 -- <https://developer.spotify.com/documentation/web-api/reference/object-model/#show-object-simplified>
 data ShowSimplified
   = ShowSimplified
-      { available_markets :: [CountryCode],
+      { available_markets :: Maybe [CountryCode],
         copyrights :: [Copyright],
         description :: Text,
         explicit :: Bool,
@@ -1042,7 +1042,7 @@ newtype SpotifyURL = SpotifyURL Text
 -- <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2>
 newtype CountryCode = CountryCode {countryCodeText :: Text}
   deriving stock (Show)
-  deriving newtype (ToHttpApiData, FromJSON)
+  deriving newtype (ToHttpApiData, FromJSON, IsString)
 
 data Country
   = CountryFromToken
@@ -1059,7 +1059,7 @@ instance ToHttpApiData Country where
 -- <https://en.wikipedia.org/wiki/ISO_639-1>
 newtype LanguageCode = LanguageCode {languageCodeText :: Text}
   deriving stock (Show)
-  deriving newtype (ToHttpApiData, FromJSON)
+  deriving newtype (ToHttpApiData, FromJSON, IsString)
 
 data Locale = Locale LanguageCode CountryCode
   deriving stock (Show)
